@@ -1,130 +1,88 @@
 <template>
-  <div class='demo0' ref='demo0'>leaflet-demo</div>
+  <div class="demo0" ref="demo0">leaflet-demo</div>
 </template>
 <script>
 /* eslint-disable */
-import L from 'leaflet'
-import 'leaflet.chinatmsproviders'
-import 'leaflet/dist/leaflet.css'
-console.log(L.version)
+import L from "leaflet";
+import "leaflet.chinatmsproviders";
+import "leaflet/dist/leaflet.css";
+import MarkerDeafultIcon from '@/assets/marker-icon.png'
 export default {
-  data(){
-    return {
-
-    }
+  data() {
+    return {};
   },
-  mounted(){
-    this.initDemo0()
+  mounted() {
+    this.initDemo0();
   },
-  methods:{
-    initDemo0(){
-      let self = this
-      this.functionaltilelayer()
-      var normalm = L.tileLayer.chinaProvider('GaoDe.Normal.Map', {
+  methods: {
+    initDemo0() {
+      let self = this;
+
+      var mymap = L.map(this.$refs.demo0).setView([51.505, -0.09], 13);
+
+      L.tileLayer(
+        "https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}",
+        {
+          attribution:
+            'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
           maxZoom: 18,
-          minZoom: 5
-      });
-      var imgm = L.tileLayer.chinaProvider('GaoDe.Satellite.Map', {
-          maxZoom: 18,
-          minZoom: 5
-      });
-      var imga = L.tileLayer.chinaProvider('GaoDe.Satellite.Annotion', {
-          maxZoom: 18,
-          minZoom: 5
-      });
-      var glayer = L.tileLayer.chinaProvider('Geoq.Normal.PurplishBlue',{
-        maxZoom: 16,
-        minZoom: 5
-      })
-
-      var normal = L.layerGroup([normalm]),
-          image = L.layerGroup([imgm, imga]);
-
-      var map = L.map(this.$refs.demo0, {
-        attributionControl: false,
-        center: [30.830134404094473, 120.9259343147278],
-        zoom: 12,
-        //layers: [normal],
-        zoomControl: false,
-        doubleClickZoom: false,
-      });
-        
-      normalm.addTo(map)
-
-      self.map = map
-
-    },
-    functionaltilelayer(){
-      L.TileLayer.Functional = L.TileLayer.extend({
-
-        _tileFunction: null,
-
-        initialize: function (tileFunction, options) {
-          this._tileFunction = tileFunction;
-          L.TileLayer.prototype.initialize.call(this, null, options);
-        },
-
-        getTileUrl: function (tilePoint) {
-          var map = this._map,
-            crs = map.options.crs,
-            tileSize = this.options.tileSize,
-            zoom = tilePoint.z,
-            nwPoint = tilePoint.multiplyBy(tileSize),
-            sePoint = nwPoint.add(new L.Point(tileSize, tileSize)),
-            nw = crs.project(map.unproject(nwPoint, zoom)),
-            se = crs.project(map.unproject(sePoint, zoom)),
-            bbox = [nw.x, se.y, se.x, nw.y].join(',');
-
-          // Setup object to send to tile function.
-          var view = {
-            bbox: bbox,
-            width: tileSize,
-            height: tileSize,
-            zoom: zoom,
-            tile: {
-              row: this.options.tms ? this._tileNumBounds.max.y - tilePoint.y : tilePoint.y,
-              column: tilePoint.x
-            },
-            subdomain: this._getSubdomain(tilePoint)
-          };
-
-          return this._tileFunction(view);
-        },
-
-        _loadTile: function (tile, tilePoint) {
-          tile._layer = this;
-          tile.onload = this._tileOnLoad;
-          tile.onerror = this._tileOnError;
-
-          this._adjustTilePoint(tilePoint);
-          var tileUrl = this.getTileUrl(tilePoint);
-
-          if (typeof tileUrl === 'string') {
-            tile.src = tileUrl;
-            this.fire('tileloadstart', {
-              tile: tile,
-              url: tile.src
-            });
-          } else if (typeof tileUrl.then === 'function') {
-            // Assume we are dealing with a promise.
-            var self = this;
-            tileUrl.then(function (tileUrl) {
-              tile.src = tileUrl;
-              self.fire('tileloadstart', {
-                tile: tile,
-                url: tile.src
-              });
-            });
-          }
+          id: "mapbox/streets-v11",
+          tileSize: 512,
+          zoomOffset: -1,
+          accessToken: "pk.eyJ1Ijoiemp5NyIsImEiOiJja20wN2JwNDEyOGlwMnBtc205b3owOXYxIn0.yP30QKnxNauo-U__i1HXog",
         }
-      });
+      ).addTo(mymap);
 
-      L.tileLayer.functional = function (tileFunction, options) {
-        return new L.TileLayer.Functional(tileFunction, options);
-      };
+      var marker = L.marker([51.5, -0.09],{
+        icon:
+          L.icon({
+            iconUrl: MarkerDeafultIcon,
+            // iconSize: [38, 95],
+            iconAnchor: [12, 14],
+            // popupAnchor: [-3, -76],
+            // shadowUrl: 'my-icon-shadow.png',
+            // shadowSize: [68, 95],
+            // shadowAnchor: [22, 94]
+          })
+      }).addTo(mymap);
+
+      var circle = L.circle([51.508, -0.11], {
+        color: "red",
+        fillColor: "#f03",
+        fillOpacity: 0.5,
+        radius: 500,
+      }).addTo(mymap);
+
+      var polygon = L.polygon([
+        [51.509, -0.08],
+        [51.503, -0.06],
+        [51.51, -0.047],
+      ]).addTo(mymap);
+
+      marker.bindPopup("<b>Hello world!</b><br>I am a popup.").openPopup();
+
+      circle.bindPopup("I am a circle.");
+
+      polygon.bindPopup("I am a polygon.");
+
+      var popup = L.popup()
+        .setLatLng([51.5, -0.09])
+        .setContent("I am a standalone popup.")
+        .openOn(mymap);
+
+      function onMapClick(e) {
+        popup
+            .setLatLng(e.latlng)
+            .setContent("You clicked the map at " + e.latlng.toString())
+            .openOn(mymap);
+      }
+
+      mymap.on("click", onMapClick);
+      
+      self.map = mymap;
     },
-  }
-}
+  },
+};
 </script>
 <style lang="stylus" scoped>
 .demo0
