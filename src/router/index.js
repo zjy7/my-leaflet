@@ -15,14 +15,18 @@ const routes = [
     component: ()=>import('../views/portal/index.vue')
   },
   {
-    path: '/leaflet-demo',
-    name: 'leaflet-demo',
-    component: ()=>import('../views/leaflet-demo/index.vue')
+    path: '/demo0',
+    name: 'demo0',
+    component: ()=>import('../views/demo0/index.vue')
+  },
+  {
+    path: '/demo1',
+    name: 'demo1',
+    component: ()=>import('../views/demo1/index.vue')
   },
 ]
 
 const router = new VueRouter({
-  // mode: 'history',
   base: process.env.BASE_URL,
   routes
 })

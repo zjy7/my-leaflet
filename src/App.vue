@@ -73,6 +73,7 @@ html,body
   height 100%
   position relative
   .btnrb
+    z-index 999
     position absolute
     right 0
     top 0
