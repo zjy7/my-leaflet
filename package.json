@@ -12,6 +12,7 @@
     "core-js": "^3.6.5",
     "element-ui": "^2.15.1",
     "leaflet": "^1.7.1",
+    "leaflet-draw": "^1.0.4",
     "leaflet-pip": "^1.1.0",
     "leaflet.chinatmsproviders": "^3.0.4",
     "leaflet.heat": "^0.2.0",
