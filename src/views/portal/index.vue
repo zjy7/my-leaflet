@@ -92,6 +92,9 @@ export default {
     clickStoryMap() {
       window.open("http://atlefren.github.io/storymap/", "_blank");
     },
+    clickEdgeMarker(){
+      window.open('http://ubergesundheit.github.io/Leaflet.EdgeMarker/',"_blank")
+    }
   },
 };
 </script>
