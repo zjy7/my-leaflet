@@ -6,7 +6,7 @@ Vue.use(Vuex)
 const store = new Vuex.Store({
   state:{
     version:'1.2.3',
-    isShowHeader:true
+    isShowHeader:false
   },
   mutations:{
     setIsShowHeader(state,payload){
