@@ -19,6 +19,20 @@
       <el-collapse-item title="画" name="6">
         <el-button @click="click4">click4</el-button>
       </el-collapse-item>
+      <el-collapse-item title="插件" name="7">
+        <div class='plugins-btns'>
+          <el-button @click="clickProvider">clickProvider</el-button>
+          <!-- <el-button @click="clickPhoto">clickPhoto</el-button> -->
+          <el-button @click="clickPluseIcon">clickPluseIcon</el-button>
+          <el-button @click="clickSelectArea">clickSelectArea</el-button>
+          <el-button @click="clickHotline">clickHotline</el-button>
+          <el-button @click="clickTrackPlayBack">clickTrackPlayBack</el-button>
+          <el-button @click="clickAntPath">clickAntPath</el-button>
+          <el-button @click="clickLeafletChart">clickLeafletChart</el-button>
+          <el-button @click="clickStoryMap">clickStoryMap</el-button>
+          <el-button @click="clickEdgeMarker">clickEdgeMarker</el-button>
+        </div>
+      </el-collapse-item>
     </el-collapse>
   </div>
 </template>
@@ -63,7 +77,7 @@ export default {
       // http://turban.github.io/Leaflet.Photo/examples/cartodb.html
     },
     clickPluseIcon() {
-      window.open("https://github.com/mapshakers/leaflet-icon-pulse", "_blank");
+      window.open("http://mapshakers.com/projects/leaflet-pulse-icon/", "_blank");
     },
     clickSelectArea() {
       window.open(
@@ -105,4 +119,13 @@ export default {
   display flex
   flex-direction column
   padding 100px 300px
+</style>
+<style lang="stylus">
+.plugins-btns
+  display flex
+  flex-direction column
+  align-items center
+  .el-button
+    width 200px
+    margin 30px
 </style>

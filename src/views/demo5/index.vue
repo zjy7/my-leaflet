@@ -19,15 +19,15 @@ export default {
     initDemo0() {
       var normalMap = L.tileLayer.chinaProvider("Baidu.Normal.Map", {
           maxZoom: 18,
-          minZoom: 5,
+          minZoom: 1,
         }),
         satelliteMap = L.tileLayer.chinaProvider("Baidu.Satellite.Map", {
           maxZoom: 18,
-          minZoom: 5,
+          minZoom: 1,
         }),
         annotionMap = L.tileLayer.chinaProvider("Baidu.Satellite.Annotion", {
           maxZoom: 18,
-          minZoom: 5,
+          minZoom: 1,
         });
 
       var baseLayers = {
