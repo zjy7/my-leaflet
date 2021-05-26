@@ -34,6 +34,7 @@
           <div
             v-if="type===0"
             class="operate-btns"
+            key='type0'
           >
 
             <template v-if="scope.row.status==='SUBMIT'">
@@ -63,6 +64,7 @@
           <div
             v-else-if="type===1"
             class="operate-btns"
+            key='type01'
           >
             <template v-if="scope.row.status==='ACCEPT'">
               <span
@@ -87,6 +89,12 @@
         </template>
       </el-table-column>
     </el-table>
+    <span>
+      修复bug：
+      第36行      v-if="type===0"
+      下一行添加key
+      比如 key="type0"
+    </span>
   </div>
 </template>
 <script>
