@@ -1,5 +1,10 @@
 <template>
-  <div class="demo0" ref="demo0">leaflet-demo</div>
+  <div
+    ref="demo0"
+    class="demo0"
+  >
+    leaflet-demo
+  </div>
 </template>
 <script>
 /* eslint-disable */

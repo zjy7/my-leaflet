@@ -1,9 +1,16 @@
 <template>
   <div class="demo0">
-    <div class="demo" ref="demo0"></div>
+    <div
+      ref="demo0"
+      class="demo"
+    />
     <div class="btns">
-      <el-button @click="toggleHeat">toggle 热力图</el-button>
-      <el-button @click="toggleCluster">toggle 聚合图</el-button>
+      <el-button @click="toggleHeat">
+        toggle 热力图
+      </el-button>
+      <el-button @click="toggleCluster">
+        toggle 聚合图
+      </el-button>
     </div>
   </div>
 </template>

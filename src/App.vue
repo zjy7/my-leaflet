@@ -1,25 +1,35 @@
 <template>
   <div id="app">
-    <div class='btnrb'>
-      <el-button @click='clickHD' class='rtbtn'>
-        {{isShowHeader ? 'Hide':'Display'}} Header
-      </el-button>
-    </div>
-
-    <div id="nav" v-show='isShowHeader'>
+    <div class="btnrb">
       <el-button
-        v-for='(item,index) in menusArr'
-        :key='"btn"+index'
-        @click='clickBtn(item)'
-        >
-        {{item.name}}
+        class="rtbtn"
+        @click="clickHD"
+      >
+        {{ isShowHeader ? 'Hide':'Display' }} Header
       </el-button>
-      <div id='creditContainer' v-show='false'></div>
-
-
     </div>
-    <div class='mainContent' :class='{isShowHeader:!isShowHeader}'>
-      <router-view/>
+
+    <div
+      v-show="isShowHeader"
+      id="nav"
+    >
+      <el-button
+        v-for="(item,index) in menusArr"
+        :key="&quot;btn&quot;+index"
+        @click="clickBtn(item)"
+      >
+        {{ item.name }}
+      </el-button>
+      <div
+        v-show="false"
+        id="creditContainer"
+      />
+    </div>
+    <div
+      class="mainContent"
+      :class="{isShowHeader:!isShowHeader}"
+    >
+      <router-view />
     </div>
   </div>
 </template>
