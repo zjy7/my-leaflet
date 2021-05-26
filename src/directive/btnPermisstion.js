@@ -14,6 +14,7 @@ export default {
         if (permissionList.indexOf(permissionCode) === -1) {
           Vue.prototype.$nextTick(() => {
             if (el.parentNode) {
+              // debugger
               el.parentNode.removeChild(el)
             }
           })

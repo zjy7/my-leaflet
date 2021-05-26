@@ -1,5 +1,6 @@
 <template>
   <div class="bug0">
+    未能重现
     <span v-has="&quot;permssion0&quot;">permssion0显示</span>
     <span v-has="&quot;permssion00&quot;">permssion00不显示</span>
     <span v-has="&quot;permssion0&quot;">permssion0显示</span>
