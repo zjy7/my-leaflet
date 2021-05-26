@@ -1,6 +1,6 @@
 <template>
   <div class="bug0">
-    能重现
+    能重现(来回切换点击下面两个按钮，table里"查看"会丢失)
 
     <el-button @click="changeType(0)">
       type=0
@@ -61,7 +61,7 @@
             </template>
           </div>
           <div
-            v-if="type===1"
+            v-else-if="type===1"
             class="operate-btns"
           >
             <template v-if="scope.row.status==='ACCEPT'">
@@ -124,6 +124,7 @@ export default {
           { name: '333', status: 'FINISH' }
         ]
       }
+      // this.$forceUpdate()
     }
   }
 }
